@@ -1,4 +1,4 @@
-package com.example.firebasedatabase.Customclass;
+package com.example.firebasedatabase.ModelClass;
 
 public class Student {
 

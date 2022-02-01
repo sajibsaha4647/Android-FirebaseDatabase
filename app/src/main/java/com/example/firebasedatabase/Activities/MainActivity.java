@@ -2,13 +2,14 @@ package com.example.firebasedatabase.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.firebasedatabase.Customclass.Student;
+import com.example.firebasedatabase.ModelClass.Student;
 import com.example.firebasedatabase.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText nametext,emailtext;
     private Button savebtn;
+
 
     DatabaseReference databaseReference;
 
@@ -46,13 +48,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String name = nametext.getText().toString();
         String email = emailtext.getText().toString();
 
-        String key = databaseReference.push().getKey();
+        if(name.equals("") || email.equals("")){
+            Toast.makeText(getApplicationContext(),"All field are required !",Toast.LENGTH_LONG).show();
+        }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            Toast.makeText(getApplicationContext(),"Invalid email address !",Toast.LENGTH_LONG).show();
+        } else{
+            String key = databaseReference.push().getKey();
+            Student student = new Student(name,email);
+            databaseReference.child(key).setValue(student);
+            Toast.makeText(getApplicationContext(),"Data save successful",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+            startActivity(intent);
+            nametext.setText("");
+            emailtext.setText("");
+        }
 
-        Student student = new Student(name,email);
 
-        databaseReference.child(key).setValue(student);
-
-        Toast.makeText(getApplicationContext(),"Data save successful",Toast.LENGTH_LONG).show();
 
     }
 }
