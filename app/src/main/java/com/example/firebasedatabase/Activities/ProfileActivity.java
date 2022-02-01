@@ -2,6 +2,7 @@ package com.example.firebasedatabase.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -32,8 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.idRecycleView);
         databaseReference = FirebaseDatabase.getInstance().getReference("students");
         arrayList = new ArrayList<Student>();
-        adapter = new RecycleAdapter(ProfileActivity.this,arrayList);
-        recyclerView.setAdapter(adapter);
+
+
     }
 
     @Override
@@ -44,12 +45,16 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                arrayList.clear();
+
                 for(DataSnapshot dataSnapshot1 : snapshot.getChildren()){
 
                     Student student = dataSnapshot1.getValue(Student.class);
                     arrayList.add(student);
-
                 }
+                adapter = new RecycleAdapter(ProfileActivity.this,arrayList);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
+                recyclerView.setAdapter(adapter);
 
             }
 

@@ -11,6 +11,9 @@ public class Student {
         this.email = email;
     }
 
+    public Student() {
+    }
+
     public String getName() {
         return name;
     }
