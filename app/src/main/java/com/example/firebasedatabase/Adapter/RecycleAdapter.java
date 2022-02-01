@@ -12,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firebasedatabase.ModelClass.Student;
 import com.example.firebasedatabase.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -19,10 +23,12 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myviewho
 
     Context context;
     ArrayList<Student>StudentArrayList;
+    DatabaseReference databaseReference;
 
-    public RecycleAdapter(Context context, ArrayList<Student> studentArrayList) {
+    public RecycleAdapter(Context context, ArrayList<Student> studentArrayList, DatabaseReference databaseReference) {
         this.context = context;
         StudentArrayList = studentArrayList;
+        this.databaseReference = databaseReference;
     }
 
     @NonNull
@@ -40,9 +46,23 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myviewho
          holder.textname.setText(student.getName());
          holder.textemail.setText(student.getEmail());
 
-        holder.itemView.setOnClickListener(view -> {
-            System.out.println("Clicking");
-            Toast.makeText(context,StudentArrayList.get(position).getName(),Toast.LENGTH_LONG).show();
+
+
+        holder.textname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FirebaseDatabase.getInstance().getReference().child("students").child(databaseReference.getRef(position).getKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(context,"Data save successful",Toast.LENGTH_LONG).show();
+                        }else{
+
+                        }
+                    }
+                });
+            }
         });
 
     }

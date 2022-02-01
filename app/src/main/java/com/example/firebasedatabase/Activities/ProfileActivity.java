@@ -53,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity  {
                     Student student = dataSnapshot1.getValue(Student.class);
                     arrayList.add(student);
                 }
-                adapter = new RecycleAdapter(ProfileActivity.this,arrayList);
+                adapter = new RecycleAdapter(ProfileActivity.this,arrayList,databaseReference);
                 recyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
                 recyclerView.setAdapter(adapter);
 
