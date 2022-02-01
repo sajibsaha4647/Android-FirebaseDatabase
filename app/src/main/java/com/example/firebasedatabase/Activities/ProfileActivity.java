@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.firebasedatabase.Adapter.RecycleAdapter;
 import com.example.firebasedatabase.ModelClass.Student;
@@ -18,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity  {
 
     private RecyclerView recyclerView;
     private RecycleAdapter adapter;
@@ -35,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
         arrayList = new ArrayList<Student>();
 
 
+
     }
 
     @Override
@@ -46,15 +49,14 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 arrayList.clear();
-
                 for(DataSnapshot dataSnapshot1 : snapshot.getChildren()){
-
                     Student student = dataSnapshot1.getValue(Student.class);
                     arrayList.add(student);
                 }
                 adapter = new RecycleAdapter(ProfileActivity.this,arrayList);
                 recyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
                 recyclerView.setAdapter(adapter);
+
 
             }
 
@@ -64,4 +66,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

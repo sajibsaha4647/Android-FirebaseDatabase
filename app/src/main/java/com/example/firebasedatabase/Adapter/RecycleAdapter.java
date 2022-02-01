@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +40,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myviewho
          holder.textname.setText(student.getName());
          holder.textemail.setText(student.getEmail());
 
+        holder.itemView.setOnClickListener(view -> {
+            System.out.println("Clicking");
+            Toast.makeText(context,StudentArrayList.get(position).getName(),Toast.LENGTH_LONG).show();
+        });
+
     }
 
     @Override
@@ -46,7 +52,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myviewho
         return StudentArrayList.size();
     }
 
-    public class Myviewholder extends RecyclerView.ViewHolder {
+    public class Myviewholder extends RecyclerView.ViewHolder  {
         TextView textname,textemail;
         public Myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -54,5 +60,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myviewho
             textemail = itemView.findViewById(R.id.descId);
 
         }
+
+
     }
+
+
+
+
+
+
 }
