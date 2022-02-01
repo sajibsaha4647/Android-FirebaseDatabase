@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "810302370641",
+    "project_id": "realtimedatabase-dba54",
+    "storage_bucket": "realtimedatabase-dba54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810302370641:android:6149097530ce770a2ad970",
+        "android_client_info": {
+          "package_name": "com.example.firebasedatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810302370641-annh8t4r3ag5pg524dlnn30upe5mfreg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpojqMd--pLtUb40-xS9qgkAW4FXTMqLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810302370641-annh8t4r3ag5pg524dlnn30upe5mfreg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
