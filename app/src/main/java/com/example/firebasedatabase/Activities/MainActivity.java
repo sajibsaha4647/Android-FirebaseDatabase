@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else{
             String key = databaseReference.push().getKey();
             Student student = new Student(name,email);
-            databaseReference.child(key).setValue(student);
+            databaseReference.child("userid1").setValue(student);
             Toast.makeText(getApplicationContext(),"Data save successful",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
             startActivity(intent);

@@ -14,10 +14,15 @@ import com.example.firebasedatabase.ModelClass.Student;
 import com.example.firebasedatabase.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myviewholder> {
 
@@ -48,17 +53,17 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myviewho
 
 
 
-        holder.textname.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                FirebaseDatabase.getInstance().getReference().child("students").child(databaseReference.getRef(position).getKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseDatabase.getInstance().getReference().child("students").child("userid1").removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(context,"Data save successful",Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"Data delete successful",Toast.LENGTH_LONG).show();
                         }else{
-
+                            Toast.makeText(context,"Data not delete successful",Toast.LENGTH_LONG).show();
                         }
                     }
                 });
